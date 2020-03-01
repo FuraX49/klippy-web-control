@@ -683,6 +683,9 @@ class MoveState:
 			"speedFactor": gcode_status["speed_factor"],
 			"geometry": {
 				"type": self.configfile.getsection("printer").get("kinematics"),
+				"max_velocity" : self.configfile.getsection("printer").get("max_velocity"),
+				"max_z_velocity" : self.configfile.getsection("printer").get("max_z_velocity"),
+
 			}
 		})
 

@@ -844,6 +844,8 @@ class Manager:
 		self.config = config
 
 		self.printer = config.get_printer()
+		
+		self.sleep_time= config.getfloat("sleep_time", 0.5)
 
 		self.printer_name = config.get('printer_name', "Klipper")
 
@@ -878,7 +880,7 @@ class Manager:
 		while True:
 			if len(WebSocketHandler.clients) > 0:
 				WebSocketHandler.broadcast(self.dispatch(self.get_state, self.reactor.monotonic()))
-			time.sleep(.25)
+			time.sleep(self.sleep_time)
 
 	def handle_gcode_response(self, msg):
 		if re.match('(B|T\d):\d+.\d\s/\d+.\d+', msg): return
